@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+
+    <!-- Nav pills -->
+    <div class="d-flex nav-profile align-items-start bg-white text-dark p-3 py-5 rounded shadow">
+        <div class="nav-pills-wrapper d-flex justify-content-start align-items-start pe-md-4 me-3 flex-column">
+            <div class="nav flex-column nav-pills rounded" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                
+                <button class="btn btn-outline-primary rounded-pill active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
+                
+                <button class="btn btn-outline-primary rounded-pill " id="v-pills-change-pass-tab" data-bs-toggle="pill" data-bs-target="#v-pills-change-pass"
+                    type="button" role="tab" aria-controls="v-pills-change-pass" aria-selected="true">Change Password</button>
+
+                <!-- <button class="btn btn-outline-primary rounded-pill" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
+                    type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</button>
+                    -->
+                <!-- <button class="btn btn-outline-primary rounded-pill" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
+                    type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button> -->
+            </div>
+        </div>
+        <div class="tab-content w-75 h-100" id="v-pills-tabContent">
+            <div class="tab-pane fade show active h-100" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                {% include 'profile-settings.html' ignore missing %}
+            </div>
+            
+            <div class="tab-pane fade show h-100" id="v-pills-change-pass" role="tabpanel" aria-labelledby="v-pills-change-pass-tab">
+                {% if session.get("user_confirmed") %}
+                    {% include 'change-password.html' ignore missing %}
+                {% else %}
+                    <h5 class="text-center text-danger">Email Confirmation Required</h5>
+                {% endif %}
+            </div>
+            <!-- <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">3
+            </div> -->
+            <!-- <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">4
+            </div> -->
+        </div>
+    </div>
+{% endblock %}

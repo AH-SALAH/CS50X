@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    
+    <div class="section">
+        
+        <h2>Add a Birthday</h2>
+        <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+        <form action="/" method="post">
+            <input type="text" name="name" placeholder="Name" minlength="2" autocomplete="off" required>
+            <input type="number" name="month" placeholder="Month" max="12" maxlength="2" autocomplete="off" min="1"
+            required>
+            <input type="number" name="day" placeholder="Day" max="31" min="1" maxlength="2" autocomplete="off" required>
+            <input type="submit" value="Add Birthday">
+        </form>
+    </div>
+
+    <div class="section">
+        
+        <h2>All Birthdays</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {#{{rows}}#}
+                {% if rows %}
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row['name'] }}</td>
+                    <td>{{ row['day'] }} / {{ row['month'] }}</td>
+                    <td style="display: inline-block;">
+                        <a href="/edit/{{row.id}}" title="edit">Edit</a>
+                        <a href="/delete/{{row.id}}" title="delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock body %}

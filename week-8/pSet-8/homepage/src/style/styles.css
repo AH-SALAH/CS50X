@@ -1,0 +1,368 @@
+/**
+ * @author AH.SALAH
+ * @email https://github.com/AH-SALAH
+ * @create date 2021-06-02 04:48:24
+ * @modify date 2021-06-02 04:48:36
+ * @desc [main style]
+ */
+
+
+/*
+ * Globals
+ */
+
+:root {
+    /* --flag-green: #008546; */
+    --flag-green: #15794F;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color      : #333;
+    text-shadow: none;
+    /* Prevent inheritance from `body` */
+}
+
+a {
+    text-decoration: none;
+}
+/*
+ * Base structure
+ */
+
+/* =========================== */
+/* custom scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /* background   : #888; */
+    background   : #BF2643;
+    border-radius: 4px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+body {
+    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+    box-shadow : inset 0 0 5rem rgba(0, 0, 0, .5);
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+/*
+ * Header
+ */
+
+.navbar-nav .nav-item .nav-link {
+    padding-left : 0.8em;
+    padding-right: 0.8em;
+    font-weight  : bold;
+}
+
+.navbar .navbar-toggler {
+    padding      : .55rem .55rem;
+    border-radius: 50%;
+}
+
+header .logo-flag-img {
+    width : 40px;
+    height: 40px;
+}
+
+.navbar-transparent {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* inner pages header */
+.p-header{
+    position: relative;
+    height: 20rem;
+    background: url('../assets/palestine-flag_2.jpg') no-repeat fixed center bottom/cover;
+}
+
+.p-header:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.p-header .title{
+    margin-top: 35px;
+    z-index: 1;
+}
+
+
+/* ********************** */
+/* main content */
+.main-container .overlay {
+    background: url('../assets/palestine-flag_2.jpg') no-repeat fixed center center/cover;
+    position  : absolute;
+    z-index   : 1;
+    opacity   : 1;
+    top       : 0;
+    left      : 0;
+    bottom    : 0;
+    right     : 0;
+}
+
+.main-container .overlay:after {
+    content   : '';
+    background: rgba(0, 0, 0, 0.5);
+    position  : absolute;
+    top       : 0;
+    left      : 0;
+    bottom    : 0;
+    right     : 0;
+    z-index   : 1;
+    /* opacity: 0.2; */
+    transition: all 0.3s ease;
+}
+
+.main-container .controls {
+    position     : absolute;
+    right        : -100%;
+    top          : calc(50% - 150px/2);
+    z-index      : 2;
+    border-radius: 1em;
+    font-size    : 3em;
+    transition   : all 2s ease-in-out;
+}
+
+.main-container .controls .ctl {
+    cursor   : pointer;
+    font-size: 1em;
+    padding  : 0.1em;
+}
+
+.main-container .controls .repeat {
+    font-size: 2rem;
+}
+
+.main-container .controls .ctl .icon {
+    transition: all 0.3s ease;
+    display   : block;
+}
+
+/* ********** */
+/* header intro text */
+.header-intro-text {
+    transition: all 1s ease;
+    left      : -100%;
+    z-index   : 1;
+    top       : calc(50% - 500px/2);
+}
+
+.header-intro-text>path {
+    opacity: 0.5;
+}
+
+
+/* https://css-tricks.com/fluid-width-video/ */
+.videoWrapper {
+    position         : relative;
+    /* padding-bottom: 56.25%;*/
+    /* 16            :9 */
+    padding-bottom   : 56.25%;
+    margin-top       : -8%;
+    height           : 100%;
+}
+
+.videoWrapper .circle-clip {
+    /* content: ''; */
+    background: rgba(0, 0, 0, 0.2) url('../assets/palestine-flag_2.jpg') no-repeat scroll center center/cover;
+    position  : absolute;
+    /* top    : 0;
+    left      : 0; */
+    top       : calc(50%/2);
+    left      : calc(50%/2);
+    bottom    : 0;
+    right     : 0;
+    z-index   : 1;
+    clip-path : circle();
+    transform : scale(4);
+    opacity   : 0.1;
+    transition: all 0.3s ease;
+    width     : 50%;
+    height    : 50%;
+}
+
+.videoWrapper iframe {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    width   : 100%;
+    height  : 100%;
+}
+
+.bg-flag-green {
+    background-color: var(--flag-green);
+}
+
+
+/* ********************** */
+/* main content pages */
+
+.main-container .section{
+    border-bottom: 4px solid mediumseagreen;
+    border-top: 4px solid;
+    position: relative;
+}
+.main-container .section:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(50% - 6rem/2);
+    border-top: 3rem solid transparent;
+    border-left: 1rem solid crimson;
+    border-bottom: 3rem solid transparent;
+}
+
+.main-container .section{
+    position: relative;
+    top: 10%;
+    opacity: 0;
+}
+
+/* ********************************* */
+/* handle screen */
+
+@media screen and (max-width: 768px) {
+    .p-header{
+        height: 15rem;
+        background-position: left bottom;
+    }
+
+    .navbar-transparent {
+        background-color: rgba(0, 0, 0, 0.9);
+    }
+}
+
+@media screen and (min-width: 1401px) {
+    body{
+        font-size: larger;
+    }
+
+    .header-intro-text foreignObject{
+        width: 73%;
+    }
+
+    .videoWrapper{
+        margin-top: -3%;
+    }
+    /* .header-intro-text {
+        width: 550px;
+        height: 550px;
+    }
+    
+    .header-intro-text path {
+        d: path('M0 0 L0 550 L550 300 Z') !important;
+    } */
+}
+
+/* ********************************* */
+/* animations */
+.fadeout-anime {
+    animation: fadeout 1s ease-out 0.7s forwards;
+}
+
+.fadein-anime {
+    animation: fadeout 1s ease-in 0.7s reverse forwards;
+}
+
+.rotate-anime {
+    animation: rotate 0.3s ease-in 0.3s forwards;
+}
+
+.scaleup-anime {
+    animation: scale 0.5s ease-in 0.5s forwards;
+}
+
+.scaledown-anime {
+    animation: scale 0.5s ease-in 0.5s reverse forwards;
+}
+
+.slideinLeft-anime {
+    animation: slideinLeft 1s ease-in forwards;
+}
+
+.slideoutLeft-anime {
+    animation: slideinLeft 1s ease-in reverse forwards;
+}
+
+.slideinBottom-anime {
+    animation: slideinBottom 0.7s ease forwards;
+}
+
+@keyframes fadeout {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.3;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform       : rotate(0deg);
+        transform-origin: center center;
+    }
+
+    to {
+        transform       : rotate(360deg);
+        transform-origin: center center;
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(4);
+    }
+}
+
+@keyframes slideinLeft {
+    from {
+        left: -100%;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+@keyframes slideinBottom {
+    from {
+        top: 10%;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}

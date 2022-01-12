@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Operations History</h3>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-5">
+        <table class="table table-striped table-hover table-bordered table-dark">
+            <thead>
+                <tr>
+                    <!-- get headers -->
+                    {% for k in log.data[0] %}
+                        {% if k != 'cash' and k != 'id' %}
+                            <th scope="col">
+                                <a class="text-decoration-none text-{{'info' if log.orderBy == k else 'white'}}" href="{{url_for('history', page=log.currentPage, orderBy=k, pageSize=log.pageSize)}}">
+                                    {{k.replace("_", " ") | upper}} &nabla;
+                                </a> 
+                            </th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in log.data %}
+                    <tr>
+                        {% for k in r %}
+                            {% if k != 'cash' and k != 'id' %}    
+                                {% if k in ('price') %}
+                                    <td>{{r[k] | usd }}</td>
+                                {% elif k == 'change' %}
+                                    {% if r[k] > 0 %}
+                                        <td><span style="color: green;">&uArr;</span> {{r[k]}}</td>
+                                    {% elif r[k] == 0 %}
+                                        <td><span style="color: orange;">&hArr;</span> {{r[k]}}</td>
+                                    {% else %}
+                                        <td><span style="color: red;">&dArr;</span> {{r[k]}}</td>
+                                    {% endif %}
+                                {% elif k == 'operation' %}
+                                    <td><span class="badge bg-{{'success' if r[k] == 'buy' else 'danger'}}">{{r[k]}}</span></td>
+                                {% else %}
+                                    <td>{{r[k]}}</td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- pagination -->
+    <nav class="d-flex align-items-center" aria-label="Page navigation">
+        <ul class="pagination justify-content-start pagination-sm mb-0">
+            <li class="page-item {{'disabled' if log.currentPage == 1 or log.pageSize >= log.ttl else ''}}">
+                <a title="previous" class="page-link bg-{{'secondary' if log.currentPage == 1 or log.pageSize >= log.ttl else 'dark'}} text-white" href="{{url_for('history', page=log.currentPage-1, orderBy=log.orderBy, pageSize=log.pageSize)}}" tabindex="-1" aria-disabled="{{'true' if log.currentPage == 1 else 'false'}}">Previous</a>
+            </li>
+            {% for r in range(log.pages) %}
+                <li class="page-item {{'active' if log.currentPage == r+1 or log.pageSize >= log.ttl else ''}}">
+                    {% if log.currentPage == r+1 or log.pageSize >= log.ttl %}
+                        <span class="page-link border-white">{{r+1}}</span>
+                    {% else %}
+                        <a title="{{r+1}}" class="page-link bg-dark text-white" href="{{url_for('history', page=r+1, orderBy=log.orderBy, pageSize=log.pageSize) }}" tabindex="-1" aria-disabled="{{'true' if log.currentPage == r+1 else 'false'}}">{{r+1}}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            <li class="page-item {{'disabled' if log.currentPage == log.pages or log.pageSize >= log.ttl else ''}}">
+                <a title="next" class="page-link bg-{{'secondary' if log.currentPage == log.pages or log.pageSize >= log.ttl else 'dark'}} text-white" href="{{url_for('history', page=log.currentPage+1, orderBy=log.orderBy, pageSize=log.pageSize)}}" tabindex="-1" aria-disabled="{{'true' if log.currentPage == log.pages else 'false'}}">Next</a>
+            </li>
+        </ul>
+        <div class="info px-3 d-flex align-items-center justify-content-center">
+            <select name="pageSize" class="form-select form-select-sm" aria-label="Default select" onchange="location.search = 'page={{log.currentPage}}&orderBy={{log.orderBy}}&pageSize='+this.value">
+                {% for i in [10, 20, 30] %}
+                    <option value="{{i}}" {{'selected' if log.pageSize == i else ''}}>{{i}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- <div class="info px-3 d-flex align-items-center justify-content-center">
+            <strong>{{log.data | length}} - {{log.ttl}} / page {{log.currentPage}} </strong>
+        </div> -->
+      </nav>
+
+{% endblock %}

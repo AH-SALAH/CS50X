@@ -1,0 +1,175 @@
+:root {
+    --btn-box-shadow-color: #ccc;
+}
+
+body {
+    background-color: #fff;
+    color           : #212529;
+    font-size       : 1rem;
+    font-weight     : 400;
+    line-height     : 1.5;
+    margin          : 0;
+    text-align      : left;
+}
+
+.container {
+    margin-left  : auto;
+    margin-right : auto;
+    padding-left : 15px;
+    padding-right: 15px;
+}
+
+.jumbotron {
+    background-color: #477bff;
+    color           : #fff;
+    margin-bottom   : 2rem;
+    padding         : 2rem 1rem;
+    text-align      : center;
+}
+
+.section {
+    padding: 0.5rem 2rem 1rem 2rem;
+}
+
+.section:hover {
+    background-color: #f5f5f5;
+    transition      : color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size  : 48px;
+}
+
+button,
+input[type="submit"] {
+    background-color: #d9edff;
+    border          : 1px solid transparent;
+    border-radius   : 0.25rem;
+    font-size       : 0.95rem;
+    font-weight     : 400;
+    line-height     : 1.5;
+    padding         : 0.375rem 0.75rem;
+    text-align      : center;
+    transition      : color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, filter 0.15s ease-in-out;
+    vertical-align  : middle;
+}
+
+
+input[type="text"] {
+    line-height: 2.2;
+    width      : 25%;
+    border-radius: 4px;
+    border: 1px solid gray;
+}
+
+input[type="text"]:focus {
+    outline-color: dodgerblue;
+}
+
+input[type="text"]:hover {
+    background-color: #f5f5f5;
+    transition      : color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+/* ************************** */
+
+.section-1 .q-container .options-container {
+    display: flex;
+    margin: 1em 0 2em 0;
+}
+
+.section-1 .q-container .options-container .options-wrapper {
+    margin    : 0 0.5em;
+    text-align: center;
+}
+
+.section-1 .q-container .options-container .options-wrapper:first-child {
+    margin-left: 0;
+}
+
+.section-1 .q-container .options-container .options-wrapper:last-child {
+    margin-right: 0;
+}
+
+.section-1 .q-container .options-container .options-wrapper>.opt-btn,
+.section-2 .q-container [type=submit] {
+    cursor            : pointer;
+    display           : block;
+    -webkit-box-shadow: 0px 2px 4px var(--btn-box-shadow-color);
+    -moz-box-shadow   : 0px 2px 4px var(--btn-box-shadow-color);
+    box-shadow        : 0px 2px 4px var(--btn-box-shadow-color);
+    text-align        : center;
+    margin            : 0 auto;
+    min-width         : 6em;
+}
+
+.section-1 .q-container .options-container .options-wrapper>.opt-btn.btn-correct {
+    border-color    : mediumseagreen;
+    background-color: mediumseagreen;
+    color           : #fff;
+}
+
+.section-1 .q-container .options-container .options-wrapper>.opt-btn.btn-incorrect {
+    border-color    : tomato;
+    background-color: tomato;
+    color           : #fff;
+}
+
+.section-1 .q-container .options-container .options-wrapper .opt-btn:not(.btn-correct):not(.btn-incorrect):hover,
+.section-2 .q-container [type=submit]:hover {
+    background-color: #fff;
+    color           : dodgerblue;
+    filter          : drop-shadow(0 4px 4px var(--btn-box-shadow-color));
+}
+
+.q-container >.result {
+    /* visibility: hidden; */
+    font-weight     : bold;
+    /* margin          : 0.5em 0px; */
+    display         : inline-block;
+    background-color: white;
+    color: dodgerblue;
+    box-shadow      : 0 1px 4px rgb(0 0 0 / 20%);
+    border-radius   : 10px;
+    padding         : 0 0.5em;
+}
+
+.q-container >.correct {
+    color: mediumseagreen;
+}
+
+.q-container >.incorrect {
+    color: tomato;
+}
+
+/* .show{
+    display: inline-block!important;
+}
+.hide{
+    display: none!important;
+} */
+
+.section-2{
+    margin-bottom: 1em;
+}
+
+form{
+    margin: 1em 0;
+    align-items: center;
+    display: flex;
+}
+
+.section-2 .q-container [type=submit]{
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.section-2 .q-container [type=text].correct{
+    outline-color: mediumseagreen;
+    border-color: mediumseagreen;
+}
+.section-2 .q-container [type=text].incorrect{
+    outline-color: tomato;
+    border-color: tomato;
+}

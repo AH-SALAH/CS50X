@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="section">
+
+    <h2>Edit
+        {% if row %}
+            {{row.name}}
+        {% else %}
+            {{''}}
+        {% endif %}
+    Birthday</h2>
+    <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+    <form action="/edit/{{row.id}}" method="POST">
+        <input type="text" name="name" value="{{row.name}}" placeholder="Name" minlength="2" autocomplete="off" required>
+        <input type="number" name="month" value="{{row.month}}" placeholder="Month" max="12" maxlength="2" autocomplete="off" min="1"
+            required>
+        <input type="number" name="day" value="{{row.day}}" placeholder="Day" max="31" min="1" maxlength="2" autocomplete="off" required>
+        <input type="submit" value="Edit Birthday">
+    </form>
+</div>
+
+{% endblock body %}

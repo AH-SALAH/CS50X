@@ -1,0 +1,86 @@
+<nav class="container-fluid navbar navbar-expand-md navbar-dark bg-dark shadow">
+    <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span
+            class="yellow">5</span><span class="green">0</span> <span class="red">Finance</span></a>
+    <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        {% if session.user_id %}
+        <ul class="navbar-nav mr-auto mt-2">
+            <li class="nav-item"><a class="nav-link {{'active' if request.endpoint == 'index' else ''}}"
+                    href="{{url_for('index')}}">Home</a></li>
+            <li class="nav-item"><a class="nav-link {{'active' if request.endpoint == 'quote' else ''}}"
+                    href="{{url_for('quote')}}">Quote</a></li>
+            <li class="nav-item"><a class="nav-link {{'active' if request.endpoint == 'buy' else ''}}"
+                    href="{{url_for('buy')}}">Buy</a></li>
+            <li class="nav-item"><a class="nav-link {{'active' if request.endpoint == 'sell' else ''}}"
+                    href="{{url_for('sell')}}">Sell</a></li>
+            <li class="nav-item"><a class="nav-link {{'active' if request.endpoint == 'history' else ''}}"
+                    href="{{url_for('history')}}">History</a></li>
+        </ul>
+        <div class="d-md-none d-sm-flex"><hr class="dropdown-divider"></div>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-md-center flex-row justify-content-between">
+            <li class="nav-item d-flex">
+                <span class="nav-link text-{{'success' if session['user_cash'] > 0 else 'info'}}">
+                    <span class="badge bg-success">{{session["user_cash"] | usd}}</span>
+                </span>
+                <!-- <span
+                    class="nav-link d-flex justify-content-center align-items-center p-1 px-3 text-dark bg-white rounded-circle mx-3 fw-bold">
+                    {{session["user_name"][:1] | capitalize}}
+                </span> -->
+            </li>
+            <li class="nav-item dropdown w-75">
+                <a class="nav-link dropdown-toggle d-flex flex-row-reverse justify-content-start align-items-center" 
+                    href="#" 
+                    id="navbar-user-dropdown-link" 
+                    role="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                >
+                    <span 
+                        class="
+                            user-avatar 
+                            {{'confirmed' if session.get('user_confirmed') else ''}} 
+                            position-relative 
+                            d-flex 
+                            justify-content-center 
+                            align-items-center 
+                            p-2 
+                            px-3 text-dark 
+                            bg-white 
+                            rounded-circle 
+                            ms-2 
+                            fw-bold
+                        "
+                    >
+                        {% if session.get('user_avatar') %}
+                            <span class="img-wrapper position-absolute w-100 h-100 rounded-circle">
+                                <img src="{{url_for('get_uploads', file=session.get('user_avatar'))}}" alt="avatar" class="position-absolute w-100 h-100 top-0 start-0 end-0 bottom-0">
+                            </span>        
+                        {% else %}
+                            {{(session.get("user_name")[:1] | capitalize)}}
+                        {% endif %}
+                    </span>
+                    <span class="mx-2">{{session["user_name"]}}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end" aria-labelledby="navbar-user-dropdown-link">
+                    <li><a class="dropdown-item {{'active' if request.endpoint == 'profile' else ''}}" href="{{url_for('profile')}}">Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="{{url_for('logout')}}">Log Out</a></li>
+                </ul>
+              </li>
+            <!-- <li class="nav-item"><a class="nav-link" href="{{url_for('logout')}}">Log Out</a></li> -->
+        </ul>
+        {% else %}
+        <ul class="navbar-nav ms-auto mt-2">
+            {# {% if request.endpoint != 'register' %} #}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('register')}}">Register</a></li>
+            {# {% endif %} #}
+            {# {% if request.endpoint != 'login' %} #}
+                <li class="nav-item"><a class="nav-link" href="{{url_for('login')}}">Log In</a></li>
+            {# {% endif %} #}
+        </ul>
+        {% endif %}
+    </div>
+</nav>

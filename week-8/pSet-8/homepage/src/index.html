@@ -1,0 +1,136 @@
+<!--
+@author AH.SALAH
+@email https://github.com/AH-SALAH
+@create date 2021-06-02 04:11:17
+@modify date 2021-06-02 04:12:00
+@desc [index]
+-->
+
+<!DOCTYPE html>
+
+<html lang="en" class="vh-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Leve Palestina krossa zionismen">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- bootstrap style -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- custom style -->
+    <link href="style/styles.css" rel="stylesheet">
+
+    <title>Leve Palestina | Home</title>
+</head>
+
+<body class="d-flex vh-100 text-center text-white bg-dark">
+
+    <div class="d-flex vw-100 mx-auto flex-column">
+        <header>
+            <div class="container-fluid position-absolute p-0" style="z-index: 2;">
+                <nav class="navbar navbar-expand-lg navbar-dark navbar-transparent px-3">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/">Leve Palestina <img src="assets/palestine-flag_1.jpg"
+                                class="rounded-circle logo-flag-img" alt="flag"></a>
+                        <!-- navbar toggler -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#header-navbar-toggler" aria-controls="header-navbar-toggler"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <!-- navbar nav -->
+                        <div class="collapse navbar-collapse" id="header-navbar-toggler">
+                            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                                <li class="nav-item position-relative d-flex justify-content-center align-items-center">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item position-relative d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="about.html">About</a>
+                                </li>
+                                <li class="nav-item position-relative d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="history.html">History</a>
+                                </li>
+                                <li class="nav-item position-relative d-flex justify-content-center align-items-center">
+                                    <a class="nav-link" href="resources.html">Resources</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-container position-relative w-100 h-100 overflow-hidden">
+            <!-- custom video controllers -->
+            <div class="controls d-flex flex-column justify-content-center align-items-center bg-white shadow">
+                <button type="button" class="btn ctl play-pause text-success border-bottom playing">
+                    <span class="icon" data-bs-toggle="tooltip" data-bs-placement="left" title="Pause">&ogt;</span>
+                </button>
+                <button type="button" class="btn ctl repeat text-warning">
+                    <span class="icon" data-bs-toggle="tooltip" data-bs-placement="left"
+                        title="Repeat">&circlearrowleft;</span>
+                </button>
+            </div>
+            <!-- video overlay -->
+            <div class="overlay w-100 h-100"></div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500"
+                preserveAspectRatio="xMinYMid meet" class="header-intro-text position-absolute">
+                <path d="M0 0 L0 500 L500 250 Z" fill="crimson" />
+                <foreignObject x="10" y="155" width="60%" height="60%">
+                    <div style="width: 100%;height:100%;">
+                        <img src="assets/state_of_palestine.jpg" alt="state_of_palestine" width="100"
+                            style="margin: 0.3em 0.7em 0.0em 0.0em;border-radius: 1em;float: left;cursor: zoom-in;">
+                        <p style="text-align:left;word-spacing: 3px;">Palestine, is the area
+                            covered by what we now call the Occupied Territories. It also borders
+                            Lebanon in the North, Syria and Jordan in the East, touches Saudi Arabia and Egypt in the
+                            South
+                            and
+                            the Mediterranean Sea, in the West.</p>
+                    </div>
+                </foreignObject>
+            </svg>
+
+            <!-- video wrapper -->
+            <div class="videoWrapper">
+                <!-- moving circle -->
+                <span class="circle-clip d-none d-md-flex"></span>
+                <!-- video iframe placeholder -->
+                <div id="player" data-video="https://www.youtube.com/watch?v=d2O16mYojm0"></div>
+                <!-- <div id="player" data-video="https://www.youtube.com/watch?v=cv8Iglq06-0"></div> -->
+                <!-- <div id="player" data-video="https://www.youtube.com/watch?v=RgqNQgn-KIQ"></div> -->
+            </div>
+        </main>
+
+        <footer
+            class="mt-auto position-relative bg-flag-green text-white d-flex w-100 align-items-center justify-content-center p-3 py-2"
+            style="z-index: 2;">
+            <p class="m-0">Leve Palestina &copy; <span class="footer-date">2022</span></p>
+        </footer>
+    </div>
+
+    <!-- scripts -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.min.js"
+        integrity="sha512-6ORWJX/LrnSjBzwefdNUyLCMTIsGoNP6NftMy2UAm1JBm6PRZCO1d7OHBStWpVFZLO+RerTvqX/Z9mBFfCJZ4A=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="js/ytplayer.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

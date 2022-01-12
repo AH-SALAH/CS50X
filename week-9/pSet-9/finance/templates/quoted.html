@@ -1,0 +1,30 @@
+<div class="table-responsive mt-5">
+    <table class="table table-striped table-hover table-bordered table-dark">
+        <thead>
+            <tr>
+                {% for k in data %}
+                    <th scope="col">{{k | upper}}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for k in data %}
+                    {% if k == 'price' %}
+                        <td>{{data[k] | usd }}</td>
+                    {% elif k == 'change' %}
+                        {% if data[k] > 0 %}
+                            <td><span style="color: green;">&uArr;</span> {{data[k]}}</td>
+                        {% elif data[k] == 0 %}
+                            <td><span style="color: orange;">&hArr;</span> {{data[k]}}</td>
+                        {% else %}
+                            <td><span style="color: red;">&dArr;</span> {{data[k]}}</td>
+                        {% endif %}
+                    {% else %}
+                        <td>{{data[k]}}</td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>

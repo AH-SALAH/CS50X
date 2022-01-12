@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+    <form class="login-form bg-white text-dark" action="{{url_for('login')}}" method="post">
+        <h3>Log In</h3>
+        <div class="input-group mb-3">
+            <!-- <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text"> -->
+            <input autocomplete="on" autofocus class="form-control" name="email" value="{{confirmed_mail if confirmed_mail else ''}}" placeholder="Email" type="email">
+        </div>
+        <div class="input-group mb-3">
+            <input class="form-control" name="password" placeholder="Password" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Log In</button>
+        <div class="forget-password mt-3 d-flex">
+            <a href="{{url_for('forget_password')}}"><small>forget password?</small></a>
+        </div>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <span>Do not have an account yet?</span>
+            <a href="{{url_for('register')}}" class="register-link">
+                Register
+            </a>
+        </div>
+    </div>
+{% endblock %}

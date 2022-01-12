@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    {% if owned %}
+        
+        <div class="table-responsive mt-5">
+            <table class="table table-striped table-hover table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <!-- get headers -->
+                        {% for k in owned[0] %}
+                            {% if k != 'cash' %}
+                                <th scope="col">{{k.replace("_", " ") | upper}}</th>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in owned %}
+                        <tr>
+                            {% for k in r %}
+                                {% if k != 'cash' %}    
+                                    {% if k in ('price', 'cash', 'total') %}
+                                        <td>{{r[k] | usd }}</td>
+                                    {% elif k == 'change' %}
+                                        {% if r[k] > 0 %}
+                                            <td><span style="color: green;">&uArr;</span> {{r[k]}}</td>
+                                        {% elif r[k] == 0 %}
+                                            <td><span style="color: orange;">&hArr;</span> {{r[k]}}</td>
+                                        {% else %}
+                                            <td><span style="color: red;">&dArr;</span> {{r[k]}}</td>
+                                        {% endif %}
+                                    {% else %}
+                                        <td>{{r[k]}}</td>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    {% for k, v in totals.items() %}
+                        {% if k == 'cash' %}
+                            <tr>
+                                <td>{{k.replace("_", " ") | title}}</td>
+                                <td colspan="4"></td>
+                                <td>{{v | usd}}</td>
+                            </tr>
+                        {% else %}
+                            <tr style="--bs-table-accent-bg: darkorange;">
+                                <td colspan="5"></td>
+                                <td>{{v | usd}}</td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    {% endif %}
+
+{% endblock %}

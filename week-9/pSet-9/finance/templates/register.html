@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+
+    <form class="register-form bg-white text-dark" action="{{url_for('register')}}" method="post">
+        {{ form.csrf_token }}
+        <h3>Register</h3>
+        <div class="mb-3">
+            <input 
+                autocomplete="off" 
+                autofocus 
+                class="form-control {{'is-invalid' if form.username.errors else ('is-valid' if form.username.data else '')}}" 
+                name="{{form.username.name}}" 
+                value="{{form.username.data or ''}}" 
+                placeholder="Username" 
+                type="text"
+            >
+            {% if form.username.errors %}
+                {% for error in form.username.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <input 
+                autocomplete="off" 
+                autofocus 
+                class="form-control {{'is-invalid' if form.email.errors else ('is-valid' if form.email.data else '')}}" 
+                name="{{form.email.name}}" 
+                value="{{form.email.data or ''}}" 
+                placeholder="Email" 
+                type="email"
+            >
+            {% if form.email.errors %}
+                {% for error in form.email.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <input 
+                class="form-control {{'is-invalid' if form.password.errors else ('is-valid' if form.password.data else '')}}" 
+                name="{{form.password.name}}" 
+                value="{{form.password.data or ''}}" 
+                placeholder="Password" 
+                type="password"
+            >
+            {% if form.password.errors %}
+                {% for error in form.password.errors %}
+                    <span class="invalid-feedback">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <input 
+                class="form-control {{'is-invalid' if form.confirmation.errors else ('is-valid' if form.confirmation.data else '')}}" 
+                name="{{form.confirmation.name}}" 
+                placeholder="Confirm" 
+                type="password"
+            >
+            {% if form.confirmation.errors %}
+                {% for error in form.confirmation.errors %}
+                    <span class="invalid-feedback">{{ error }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <span>Already has an account?</span>
+            <a href="{{url_for('login')}}" class="login-link">
+                Log in
+            </a>
+        </div>
+    </div>
+{% endblock %}

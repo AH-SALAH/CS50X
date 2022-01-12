@@ -1,0 +1,41 @@
+sort1 uses: bubble
+factor: 50000
+random: bubble
+sorted: bubble
+reversed: bubble
+
+factor: 5000
+random: bubble
+sorted: bubble
+reversed: bubble
+
+How do you know?:
+it takes less time than sort 3 in a big sorted numbers. O(n)
+
+sort2 uses: merge
+factor: 50000
+random: merge
+sorted: merge
+reversed: merge
+
+factor: 5000
+random: merge
+sorted: merge
+reversed: merge
+
+How do you know?:
+it takes less time than sort 1 & 3 in a big random numbers. O(n log n)
+
+sort3 uses: selection
+factor: 50000
+random: selection
+sorted: selection
+reversed: selection
+
+factor: 5000
+random: selection
+sorted: selection
+reversed: selection
+
+How do you know?:
+It takes less time than sort 1 & more time than sort 2 in big random numbers & more time than sort 1 in a big sorted numbers. O(n2)

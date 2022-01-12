@@ -1,0 +1,115 @@
+{% block additionalCss %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css"
+        integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock additionalCss %}
+<div class="cards-container row">
+    <div class="col-md-4 mb-3">
+        <div class="card text-center justify-content-center align-items-center p-3 h-100">
+            <h5 class="text-center">Avatar</h5>
+            <img src="{{url_for('get_uploads', file=get_user_avatar.get('file')) if get_user_avatar else 'http://placeimg.com/640/480/sports'}}"
+                class="card-img-top rounded-circle" alt="avatar" style="width: 120px;height: 120px;">
+            <div class="card-body">
+                <form id="profile-avatar-form" class="form-inline dropzone" action="{{url_for('uploads')}}">
+                    <!-- <div class="form-group">
+                        <label class="custom-file">
+                            <input type="file" name="avatar" id="profile-avatar-file" placeholder="Add Avatar" class="form-control form-control-sm custom-file-input"
+                                aria-describedby="fileHelpId">
+                            <span class="custom-file-control"></span>
+                        </label>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mb-3">
+        <div class="card text-center justify-content-center align-items-start p-3 h-100">
+            <div class="card-body w-100">
+                <div class="position-relative">
+                    {% if data %}
+                        <h5 class="text-start">Info</h5>
+                        <hr>
+                        <form class="profile-form bg-white text-dark d-flex justify-content-start align-items-start flex-wrap flex-column" action="" method="">
+                            <div class="row w-100">
+                                <div class="col-md-12">
+                                    {% for k, v in data.items() %}
+                                        <div class="mb-3 w-100 d-flex justify-content-between align-items-center flex-wrap">
+                                            <strong class="badge bg-info me-2">{{k}}</strong>
+                                            {% if k.lower() == "confirmed" %}
+                                                <span class="fs-5 {{'text-success' if v else 'text-danger'}}">
+                                                    {{ ('&#10003;' if v else '&#10007;') | safe }}
+                                                </span>
+                                            {% elif k.lower() == "cash" %}
+                                                <span class="text-success">
+                                                    {{ v | usd }}
+                                                </span>
+                                            {% else %}
+                                                <span>
+                                                    {{ v }}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                                         
+                            <!-- <div class="mb-3 submit-btn-wrapper w-25">
+                                <button class="btn btn-primary w-100 rounded-pill" type="submit">Reset</button>
+                            </div> -->
+                        </form>
+                    {% else %}
+                        <h5>No Data Found</h5>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block additionalScripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"
+        integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // The recommended way from within the init configuration:
+        Dropzone.options.profileAvatarForm = {
+            init: function() {
+                // add new avatar dyn after successfull upload
+                this.on("success", function(file, resp) { 
+                    //console.log("file: ", file, "resp: ", resp);
+                    cardAvatar = document.querySelector("#v-pills-profile .card .card-img-top");
+                    navAvatar = document.querySelector("nav .navbar-nav .user-avatar img");
+                    if(file.dataURL){
+                        if(cardAvatar) cardAvatar.setAttribute("src", file.dataURL);
+
+                        if(navAvatar) {
+                            navAvatar.setAttribute("src", file.dataURL);
+                        }
+                        else {
+                            // create this temp img
+                            container = document.querySelector("nav .navbar-nav .user-avatar");
+                            if(container){
+                                container.innerHTML = `<span class="img-wrapper position-absolute w-100 h-100 rounded-circle">
+                                    <img src="${file.dataURL}" alt="avatar" class="position-absolute w-100 h-100 top-0 start-0 end-0 bottom-0">
+                                </span>`;
+                            }
+                        }
+                    }
+                });
+                // rm preview after sometime
+                this.on("complete", function(file) {
+                    let tt = setTimeout(() => {
+                        this.removeFile(file);
+                        clearTimeout(tt);
+                    }, 3000);
+                });
+            }
+        };
+        //myDropzone.on("addedfile", function(file) {
+            //file.previewElement.addEventListener("click", function() {
+                //myDropzone.removeFile(file);
+            //});
+        //});
+    </script>
+
+{% endblock additionalScripts %}
