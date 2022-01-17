@@ -1,5 +1,5 @@
 <div align="center" style="text-align:center;">
-    <img src="./assets/palestine-flag_2.jpg" width="150" height="150" style="border-radius:50%" />
+    <img src="./assets/palestine-flag_2.jpg" width="150" style="border-radius:50%" />
 
 [Leve Palestina](https://levepalestina.netlify.app/)
 
